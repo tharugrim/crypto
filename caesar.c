@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void caesar(char* plain, char* cipher, char key);
+void shift(char* in, char* out, int n);
+void rmspaces(char* str);
+
+int main(int argc, char* argv[])
+{
+    if (argc < 3) {
+        fprintf(stderr, "usage: %s message key \n", argv[0]);
+        return 1;
+    }
+
+    char* plain = argv[1];
+    
+    if (argc > 3)
+        if (!strcmp(argv[3], "--remove-spaces"))
+            rmspaces(plain);
+
+    char cipher[strlen(plain)];
+    char key = atoi(argv[2]);
+
+    if (key > 26 || key < 1) {
+        fprintf(stderr, "key has to be between 1 and 26\n");
+        return 1;
+    }
+
+    caesar(plain, cipher, key);
+    
+    printf("%s\n", plain);
+    printf("%s\n", cipher);
+    return 0;
+}
+
+void caesar(char* plain, char* cipher, char key)
+{
+    char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char cipherbet[26];
+    size_t i;
+
+    shift(alphabet, cipherbet, key);
+
+    for (i = 0; plain[i] != '\0'; ++i) {
+        if (isspace(plain[i]))
+           cipher[i] = plain[i]; 
+        else
+            cipher[i] = cipherbet[toupper(plain[i]) - 'A'];
+    }
+    cipher[i] = '\0';
+}
+
+/* ring shift the string by n places and write the result to out */
+void shift(char* in, char* out, int n)
+{
+    size_t i;
+    size_t size = strlen(in);
+
+    for (i = 0; in[i] != '\0'; ++i)
+        out[i] = in[i+n >= size ? i+n - size : i+n];
+    out[i] = '\0';
+}
+
+/* remove all blanks from a string */
+void rmspaces(char *str)
+{
+    char *i = str, *j = str;
+    while(*j != 0)
+    {
+        *i = *j++;
+        if(*i != ' ')
+            i++;
+    }
+    *i = 0;
+}
