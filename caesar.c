@@ -1,3 +1,11 @@
+/*
+ * Author: Tobias Patzl
+ * simple implementation of the caesar cipher
+ * 
+ * The key is the number of the places the alphabet is shifted, to create the cipher alphabet
+ * Each letter is replaced with the letter on the same index in the cipher alphabet
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
