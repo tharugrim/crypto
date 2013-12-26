@@ -1,3 +1,12 @@
+/*
+ * Author: Tobias Patzl
+ * simple implementation of the atbash cipher
+ *
+ * The distance of each letter to the beginning of the alphabet is counted.
+ * Each letter is replaced with the letter, that has the same distance from the end of the alphabet.
+ * 
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
