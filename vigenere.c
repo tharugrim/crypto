@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 void encrypt(char* plain, char* cipher, char* keyword);
 void decrypt(char* cipher, char* plain, char* keyword);
@@ -44,7 +45,7 @@ int main(int argc, char* argv[])
     {
         fprintf(stderr, "usage: %s mode message keyword [--remove-spaces]\n", argv[0]);
         fprintf(stderr, "    where mode is either encrypt or decrypt\n");
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     char* in = argv[2];
@@ -63,12 +64,12 @@ int main(int argc, char* argv[])
         decrypt(in, out, keyword);
     else {
         fprintf(stderr, "unrecognized mode: %s\n", argv[1]);
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     printf("%s\n", out);
 
-    return 0;
+    exit(EXIT_SUCCESS);
 }
 
 void encrypt(char* plain, char* cipher, char* keyword)

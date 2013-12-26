@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 void caesar(char* plain, char* cipher, char key);
 void shift(char* in, char* out, int n);
@@ -10,7 +11,7 @@ int main(int argc, char* argv[])
 {
     if (argc < 3) {
         fprintf(stderr, "usage: %s message key \n", argv[0]);
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     char* plain = argv[1];
@@ -24,14 +25,14 @@ int main(int argc, char* argv[])
 
     if (key > 26 || key < 1) {
         fprintf(stderr, "key has to be between 1 and 26\n");
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     caesar(plain, cipher, key);
     
     printf("%s\n", plain);
     printf("%s\n", cipher);
-    return 0;
+    exit(EXIT_SUCCESS);
 }
 
 void caesar(char* plain, char* cipher, char key)

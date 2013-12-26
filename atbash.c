@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 void atbash(char* plain, char* cipher);
 
@@ -8,8 +9,9 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)  {
         fprintf(stderr, "usage: %s \"text to encrypt\"\n", argv[0]);
-        return 1;
+        exit(EXIT_FAILURE);
     }
+
     char* plain = argv[1];
     char cipher[strlen(plain)];
 
@@ -18,7 +20,7 @@ int main(int argc, char *argv[])
     printf("%s\n", plain);
     printf("%s\n", cipher);
 
-    return 0;
+    exit(EXIT_SUCCESS);
 }
 
 void atbash(char* plain, char* cipher)
