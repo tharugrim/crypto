@@ -1,3 +1,17 @@
+/* 
+ * Author: Tobias Patzl
+ * simple implementation of the Vigenere cipher [1]
+ *
+ * The Vigenere square contains all 26 Caesar ciphers.
+ * The plaintext message is encrypted with some of them.
+ * A keyword is used to determine which Caesar cipher should be used for each letter.
+ * The characters of the keyword are repeated to match the length of the plaintext message, so that 
+ * there is one letter of the keyword for each letter of the plaintext message.
+ * Each letter is ciphered with the Caesar cipher that starts with the corresponding letter from the keyword.
+ *
+ * [1] https://en.wikipedia.org/wiki/Vigenere_cipher
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -75,14 +89,14 @@ int main(int argc, char* argv[])
 void encrypt(char* plain, char* cipher, char* keyword)
 {
     int len = strlen(plain);
-    char rkeyword[len]; /* the repeated keyword to match the count of the plaintext */
+    char rkeyword[len]; 
     size_t i;
 
     strtoupper(plain);
     repeat(keyword, rkeyword, len); 
     strtoupper(rkeyword);
-    for (i = 0; i < len; ++i)
-    {
+
+    for (i = 0; i < len; ++i) {
         if(isspace(plain[i]))
             cipher[i] = plain[i];
         else
@@ -94,15 +108,15 @@ void encrypt(char* plain, char* cipher, char* keyword)
 void decrypt(char* cipher, char* plain, char* keyword)
 {
     int len = strlen(cipher);
-    char rkeyword[len]; /* the repeated keyword to match the count of the plaintext */
+    char rkeyword[len]; 
     size_t i;
     int index;
 
     strtoupper(cipher);
     repeat(keyword, rkeyword, len); 
     strtoupper(rkeyword);
-    for (i = 0; i < len; ++i)
-    {
+
+    for (i = 0; i < len; ++i) {
         if (isspace(cipher[i]))
             plain[i] = cipher[i];
         else { 
@@ -112,7 +126,8 @@ void decrypt(char* cipher, char* plain, char* keyword)
     }
     plain[i] = '\0';
 }
-/* repeats the character sequence of word into rword until the length of rword is n */
+
+/* repeat:  repeat the character sequence of word into rword until the length of rword is n */
 void repeat(char* word, char* rword, int n)
 {
      size_t wordlen = strlen(word);
@@ -128,7 +143,7 @@ void repeat(char* word, char* rword, int n)
      }
 }
 
-/* remove all blanks from a string */
+/* rmspaces: remove all blanks from a string */
 void rmspaces(char *str)
 {
     char *i = str, *j = str;
@@ -141,7 +156,7 @@ void rmspaces(char *str)
     *i = 0;
 }
 
-/* makes all characters of a string uppercase */
+/* strtoupper: make all characters of the string str uppercase */
 void strtoupper(char *str)
 {
     while (*str != '\0') {
@@ -150,6 +165,7 @@ void strtoupper(char *str)
     }
 }
 
+/* strindex: return the index of the first occurance of the character c in the string str */
 size_t strindex(char* str, char c)
 {
     size_t i;
