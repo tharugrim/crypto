@@ -12,7 +12,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-void atbash(char* plain, char* cipher);
+void atbash(char *plain, char *cipher);
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    char* plain = argv[1];
+    char *plain = argv[1];
     char cipher[strlen(plain)];
 
     atbash(plain, cipher);
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     exit(EXIT_SUCCESS);
 }
 
-void atbash(char* plain, char* cipher)
+void atbash(char *plain, char *cipher)
 {
     size_t i;
     int dist;

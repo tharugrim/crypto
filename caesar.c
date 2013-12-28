@@ -11,18 +11,18 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-void caesar(char* plain, char* cipher, char key);
-void shift(char* in, char* out, int n);
-void rmspaces(char* str);
+void caesar(char *plain, char *cipher, char key);
+void shift(char *in, char *out, int n);
+void rmspaces(char *str);
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     if (argc < 3) {
         fprintf(stderr, "usage: %s message key \n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
-    char* plain = argv[1];
+    char *plain = argv[1];
     
     if (argc > 3)
         if (!strcmp(argv[3], "--remove-spaces"))
@@ -43,9 +43,9 @@ int main(int argc, char* argv[])
     exit(EXIT_SUCCESS);
 }
 
-void caesar(char* plain, char* cipher, char key)
+void caesar(char *plain, char *cipher, char key)
 {
-    char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char cipherbet[26];
     size_t i;
 
@@ -61,7 +61,7 @@ void caesar(char* plain, char* cipher, char key)
 }
 
 /* ring shift the string by n places and write the result to out */
-void shift(char* in, char* out, int n)
+void shift(char *in, char *out, int n)
 {
     size_t i;
     size_t size = strlen(in);

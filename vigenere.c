@@ -17,12 +17,12 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-void encrypt(char* plain, char* cipher, char* keyword);
-void decrypt(char* cipher, char* plain, char* keyword);
+void encrypt(char *plain, char *cipher, char *keyword);
+void decrypt(char *cipher, char *plain, char *keyword);
 void rmspaces(char *str);
-void repeat(char* word, char* rword, int n);
+void repeat(char *word, char *rword, int n);
 void strtoupper(char *str);
-size_t strindex(char* str, char c);
+size_t strindex(char *str, char c);
 
 char vigsquare[26][27] = {
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -53,7 +53,7 @@ char vigsquare[26][27] = {
     "ZABCDEFGHIJKLMNOPQRSTUVWXY", 
 };
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     if (argc < 4)
     {
@@ -62,13 +62,13 @@ int main(int argc, char* argv[])
         exit(EXIT_FAILURE);
     }
 
-    char* in = argv[2];
+    char *in = argv[2];
     if (argc > 4)
         if (!strcmp(argv[4], "--remove-spaces"))
             rmspaces(in);
 
     char out[strlen(in)];
-    char* keyword = argv[3];
+    char *keyword = argv[3];
 
     printf("%s\n", in);
 
@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
     exit(EXIT_SUCCESS);
 }
 
-void encrypt(char* plain, char* cipher, char* keyword)
+void encrypt(char *plain, char *cipher, char *keyword)
 {
     int len = strlen(plain);
     char rkeyword[len]; 
@@ -105,7 +105,7 @@ void encrypt(char* plain, char* cipher, char* keyword)
     cipher[i] = '\0';
 }
 
-void decrypt(char* cipher, char* plain, char* keyword)
+void decrypt(char *cipher, char *plain, char *keyword)
 {
     int len = strlen(cipher);
     char rkeyword[len]; 
@@ -128,7 +128,7 @@ void decrypt(char* cipher, char* plain, char* keyword)
 }
 
 /* repeat:  repeat the character sequence of word into rword until the length of rword is n */
-void repeat(char* word, char* rword, int n)
+void repeat(char *word, char *rword, int n)
 {
      size_t wordlen = strlen(word);
      size_t i;
@@ -166,7 +166,7 @@ void strtoupper(char *str)
 }
 
 /* strindex: return the index of the first occurance of the character c in the string str */
-size_t strindex(char* str, char c)
+size_t strindex(char *str, char c)
 {
     size_t i;
     for (i = 0; str[i] != '\0'; ++i)
